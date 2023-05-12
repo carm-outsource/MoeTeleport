@@ -57,7 +57,7 @@ public class PluginMessages extends ConfigurationRoot {
     ).build();
 
     public static final ConfiguredMessageList<BaseComponent[]> NOT_ENABLED = list().defaults(
-            "&f该功能在次服务器中并未被启用。"
+            "&f该功能在此服务器中并未被启用。"
     ).build();
 
     public static class USAGE extends ConfigurationRoot {
