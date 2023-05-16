@@ -53,6 +53,10 @@ public class TeleportManager {
         while (queueIterator.hasNext()) {
             Map.Entry<UUID, TeleportQueue> entry = queueIterator.next();
             TeleportQueue queue = entry.getValue();
+            if (!queue.getPlayer().isOnline()) { // 玩家已经离线，无需继续执行判断
+                queueIterator.remove();
+                continue;
+            }
             if (!queue.checkTime()) {
                 PluginConfig.TELEPORTATION.SOUND.CHANNELING.playTo(queue.getPlayer());
                 PluginConfig.TELEPORTATION.TITLE.CHANNELING.send(
@@ -85,6 +89,10 @@ public class TeleportManager {
 
     public TeleportQueue getQueue(Player player) {
         return getQueue(player.getUniqueId());
+    }
+
+    public void clearQueue(UUID uuid) {
+        teleportQueue.remove(uuid);
     }
 
     public boolean isChanneling(UUID uuid) {

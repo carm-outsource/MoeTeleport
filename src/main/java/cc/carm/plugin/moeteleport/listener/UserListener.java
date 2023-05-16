@@ -21,6 +21,7 @@ public class UserListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         MoeTeleport.getRequestManager().cancelAllRequests(player);
+        MoeTeleport.getTeleportManager().clearQueue(player.getUniqueId());
         MoeTeleport.getUserManager().unloadData(player.getUniqueId());
     }
 
