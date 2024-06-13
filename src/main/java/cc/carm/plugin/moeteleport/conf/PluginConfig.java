@@ -40,8 +40,8 @@ public class PluginConfig extends ConfigurationRoot {
                 "如 [back: back] 代表 玩家可以输入/back 代替 /MoeTeleport back",
                 "注意：简短指令不应当包含空格，且不可与其他插件指令重复，否则将会被覆盖。",
         })
-        public static final ConfiguredMap<String, String> ALIAS = ConfiguredMap.builder(String.class, String.class)
-                .fromString().defaults((map) -> {
+        public static final ConfiguredMap<String, String> ALIAS = ConfiguredMap.builderOf(String.class, String.class)
+                .asLinkedMap().fromString().defaults((map) -> {
                     map.put("back", "back");
                     map.put("tpa", "teleport to");
                     map.put("tpaHere", "teleport here");
@@ -173,7 +173,7 @@ public class PluginConfig extends ConfigurationRoot {
 
         @HeaderComment("设定权限对应的可设置家的数量。 (数量: 权限)")
         public static final ConfiguredMap<Integer, String> PERMISSIONS = ConfiguredMap
-                .builder(Integer.class, String.class)
+                .builderOf(Integer.class, String.class).asLinkedMap()
                 .fromString()
                 .parseKey(Integer::parseInt).serializeKey(Object::toString)
                 .defaults(MapFactory.linkedMap(10, "MoeTeleport.vip").build())
@@ -192,7 +192,7 @@ public class PluginConfig extends ConfigurationRoot {
 
         @HeaderComment("设定权限对应的可设置地标的数量。 (数量: 权限)")
         public static final ConfiguredMap<Integer, String> PERMISSIONS = ConfiguredMap
-                .builder(Integer.class, String.class)
+                .builderOf(Integer.class, String.class).asLinkedMap()
                 .fromString()
                 .parseKey(Integer::parseInt).serializeKey(Object::toString)
                 .defaults(MapFactory.linkedMap(2, "MoeTeleport.vip").build())

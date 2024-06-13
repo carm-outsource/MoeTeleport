@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public abstract class FileBasedStorage implements DataStorage {
 
-    protected static final ConfigValue<String> FILE_PATH = ConfiguredValue.builder(String.class)
+    protected static final ConfigValue<String> FILE_PATH = ConfiguredValue.builderOf(String.class)
             .fromString().defaults("data")
             .headerComments(
                     "选择 yaml/json 存储方式时的存储路径",

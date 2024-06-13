@@ -10,8 +10,10 @@ import cc.carm.lib.mineconfiguration.bukkit.builder.title.TitleConfigBuilder;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredMessage;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredMessageList;
 import cc.carm.lib.mineconfiguration.bukkit.value.ConfiguredTitle;
+import cc.carm.lib.mineconfiguration.bukkit.value.notify.ConfiguredNotify;
 import de.themoep.minedown.MineDown;
 import net.md_5.bungee.api.chat.BaseComponent;
+import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
@@ -125,9 +127,13 @@ public class PluginMessages extends ConfigurationRoot {
 
     public static class RELOAD extends ConfigurationRoot {
 
-        public static final ConfiguredMessageList<BaseComponent[]> START = list().defaults(
-                "&f正在重载配置文件..."
-        ).build();
+        public static final ConfiguredNotify START = ConfiguredNotify.create()
+                .defaultMessages("&f正在重载配置文件 %(start)...")
+                .defaultSound(Sound.ENTITY_PLAYER_LEVELUP)
+                .defaultActionBar("Reloading.. %(start)")
+                .defaultTitle("Reloading...", "%(start)", 0, 20, 0)
+                .params("start")
+                .build();
 
         public static final ConfiguredMessageList<BaseComponent[]> ERROR = list().defaults(
                 "&f配置文件&c重载失败！&f详细原因详见后台输出。"
